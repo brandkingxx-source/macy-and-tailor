@@ -71,7 +71,7 @@
     <div class="container">
       <div class="timeline-grid">
         <div class="story-image-wrap reveal">
-          <img id="story-img" src="" alt="Premium Macy & Tailor snack products styled on a shelf">
+          <img id="story-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80" alt="Premium Macy & Tailor snack products styled on a shelf" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80'">
         </div>
         <div>
           <div class="section-label reveal">— Why we bake it this way —</div>
@@ -169,7 +169,13 @@
   <script src="animations.js"></script>
   <script>
     const C = window.SITE_CONFIG;
-    document.getElementById('story-img').src = C.images.retailScene;
+    const tryLoad = (el, src) => {
+      const t = new Image();
+      t.onload = () => { el.src = src; };
+      t.onerror = () => {};
+      t.src = src;
+    };
+    tryLoad(document.getElementById('story-img'), C.images.retailScene);
 
     // TABS
     const tabsEl = document.getElementById('family-tabs-all');

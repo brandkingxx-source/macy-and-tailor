@@ -53,7 +53,7 @@
     <div class="container">
       <div class="timeline-grid">
         <div class="story-image-wrap reveal">
-          <img id="feature-img" src="" alt="Perfect grazing platter with Macy & Tailor pretzels, cheese and dips">
+          <img id="feature-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80" alt="Perfect grazing platter with Macy & Tailor pretzels, cheese and dips" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80'">
         </div>
         <div>
           <div class="section-label reveal">— Platter of the Month —</div>
@@ -186,7 +186,13 @@
   <script>
     const C = window.SITE_CONFIG;
     const featured = C.recipes.find(r => r.title.includes('Perfect')) || C.recipes[4];
-    document.getElementById('feature-img').src = featured.image;
+    const tryLoad = (el, src) => {
+      const t = new Image();
+      t.onload = () => { el.src = src; };
+      t.onerror = () => {};
+      t.src = src;
+    };
+    tryLoad(document.getElementById('feature-img'), featured.image);
     document.getElementById('feature-link').href = featured.link;
     document.getElementById('ig-link').href = C.contact.instagramLink;
 

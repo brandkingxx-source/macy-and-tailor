@@ -53,7 +53,7 @@
     <div class="container">
       <div class="timeline-grid">
         <div class="story-image-wrap reveal">
-          <img id="story-img-1" src="" alt="Artisan Macy & Tailor snacks styled with warm lifestyle aesthetic">
+          <img id="story-img-1" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80" alt="Artisan Macy & Tailor snacks styled with warm lifestyle aesthetic" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80'">
         </div>
         <div>
           <div class="section-label reveal">— Who we are —</div>
@@ -107,7 +107,7 @@
 
       <div class="timeline-grid">
         <div class="story-image-wrap reveal">
-          <img id="story-img-2" src="" alt="Elegant brand detail shot of Macy & Tailor elephant mascot motif">
+          <img id="story-img-2" src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=800&auto=format&fit=crop&q=80" alt="Elegant brand detail shot of Macy & Tailor elephant mascot motif" onerror="this.src='https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=800&auto=format&fit=crop&q=80'">
         </div>
         <div class="timeline-list" id="timeline-list"></div>
       </div>
@@ -244,8 +244,14 @@
   <script src="animations.js"></script>
   <script>
     const C = window.SITE_CONFIG;
-    document.getElementById('story-img-1').src = C.images.storyScene;
-    document.getElementById('story-img-2').src = C.images.mascotScene;
+    const tryLoad = (el, src) => {
+      const t = new Image();
+      t.onload = () => { el.src = src; };
+      t.onerror = () => {};
+      t.src = src;
+    };
+    tryLoad(document.getElementById('story-img-1'), C.images.brandDetail1);
+    tryLoad(document.getElementById('story-img-2'), C.images.brandDetail2);
     document.getElementById('year-founded').textContent = C.founded;
     document.getElementById('community-count').textContent = C.community;
 
