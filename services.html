@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products & Range | Macy & Tailor</title>
+  <meta name="description" content="Explore the full Macy & Tailor snack range — Pressed Pretzels, Plantain Chips, Grain Free Tortillas and Twisted Pretzel Sticks.">
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐘%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <div class="noise-overlay"></div>
+  <div class="page-transition-overlay"></div>
+
+  <script src="site-config.js"></script>
+
+  <header>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="logo-container">
+        <div class="logo-mark">🐘</div>
+        <div class="brand-name">
+          Macy & Tailor
+          <span>For the Love of Snacks</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html" class="active">Products</a></li>
+        <li><a href="experience.html">Our Story</a></li>
+        <li><a href="gallery.html">Recipes</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="contact.html" class="btn btn-primary">Stockist Enquiry</a>
+        <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section class="page-banner">
+    <div class="container reveal">
+      <div class="section-label" style="justify-content: center;">— The Full Range —</div>
+      <h1 style="margin-top: 18px;">Every crunch. Every <span class="italic">flavour.</span> All in one place.</h1>
+      <p>From thin pressed pretzels to kettle-cooked plantain chips, explore every Macy & Tailor variety. Filter by family to find your new go-to bag.</p>
+    </div>
+  </section>
+
+  <!-- Featured Retailer Note -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="products-shell">
+        <div class="products-header">
+          <div class="reveal">
+            <h2>Browse by snack family</h2>
+            <p style="margin-top: 12px; color: var(--text-body); max-width: 520px;">Each family has its own crunch personality. Tap a tab to narrow things down.</p>
+          </div>
+          <div class="family-tabs reveal reveal-delay-2" id="family-tabs-all"></div>
+        </div>
+
+        <div class="products-grid" id="products-grid-all" style="grid-template-columns: repeat(3, 1fr);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Family Spotlight -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="timeline-grid">
+        <div class="story-image-wrap reveal">
+          <img id="story-img" src="" alt="Premium Macy & Tailor snack products styled on a shelf">
+        </div>
+        <div>
+          <div class="section-label reveal">— Why we bake it this way —</div>
+          <h2 class="reveal reveal-delay-1" style="font-size: clamp(2rem, 3.5vw, 2.8rem); margin: 20px 0 24px; max-width: 500px;">
+            Built around <span class="italic">real ingredients</span> and zero shortcuts.
+          </h2>
+          <div class="reveal reveal-delay-2" style="color: var(--text-body); line-height: 1.8; margin-bottom: 24px;">
+            <p style="margin-bottom: 18px;">Macy & Tailor ranges are consistently crafted without artificial flavours and without preservatives. We lean on oven baking, clean seasonings and quality base ingredients so the flavour on the label is the flavour in the bag.</p>
+            <p>Where we can go cleaner, we do — palm-oil free formats, dairy free variants and vegan options sit alongside the more indulgent flavours, so there's always something in reaching distance.</p>
+          </div>
+          <div class="values-grid" style="grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;">
+            <div class="value-card reveal reveal-delay-3" style="padding: 28px 24px;">
+              <div class="value-icon" style="width: 48px; height: 48px; border-radius: 14px; font-size: 22px; margin-bottom: 18px;">🌾</div>
+              <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Clean Labels</h3>
+              <p style="font-size: 0.88rem;">No artificial flavours. No preservatives. Short ingredient lists you can actually read.</p>
+            </div>
+            <div class="value-card reveal reveal-delay-4" style="padding: 28px 24px;">
+              <div class="value-icon" style="width: 48px; height: 48px; border-radius: 14px; font-size: 22px; margin-bottom: 18px;">🔥</div>
+              <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Oven Baked First</h3>
+              <p style="font-size: 0.88rem;">Our pretzel lines are oven baked for a lighter crunch that works every day of the week.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stockists CTA -->
+  <section class="section" style="padding-top: 60px;">
+    <div class="container">
+      <div class="stockists-shell">
+        <div class="section-header reveal">
+          <div class="section-label">— Find Them In Store —</div>
+          <h2>Available across NZ & AU retailers</h2>
+          <p>Find your favourite Macy & Tailor lines at the retailers below, or get in touch if you'd like to stock us in your store, cafe or deli.</p>
+        </div>
+        <div class="stockists-grid" id="stockists-grid-all"></div>
+        <div style="text-align: center; margin-top: 48px;" class="reveal">
+          <a href="contact.html" class="btn" style="background: linear-gradient(135deg, var(--caramel), var(--gold)); color: var(--charcoal); font-weight: 700;">
+            Become a Stockist
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-name">
+            Macy & Tailor
+            <span>For the Love of Snacks</span>
+          </div>
+          <p>Premium artisan snacks crafted in Auckland, New Zealand since 2017. Pressed pretzels, plantain chips and twisted sticks built for every occasion.</p>
+          <div class="footer-mascot">🐘 Meet Macy — our not-so-average snack elephant</div>
+        </div>
+        <div class="footer-col">
+          <h5>Explore</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Products</a></li>
+            <li><a href="experience.html">Our Story</a></li>
+            <li><a href="gallery.html">Recipes</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>The Range</h5>
+          <ul class="footer-links">
+            <li>Pressed Pretzels</li>
+            <li>Plantain Chips</li>
+            <li>Grain Free Tortillas</li>
+            <li>Twisted Pretzel Sticks</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Stay Crunchy</h5>
+          <div class="newsletter-box">
+            <p>Join for new launches, exclusive recipes and behind-the-scenes drops.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('.newsletter-input').value=''; alert('Thanks! You are on the list 🥨');">
+              <input type="email" class="newsletter-input" placeholder="your@email.com" required>
+              <button type="submit" class="newsletter-btn">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">© 2026 Macy & Tailor. All rights reserved. · hello@macyandtailor.com · @macyandtailor</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="animations.js"></script>
+  <script>
+    const C = window.SITE_CONFIG;
+    document.getElementById('story-img').src = C.images.retailScene;
+
+    // TABS
+    const tabsEl = document.getElementById('family-tabs-all');
+    const families = ['All', ...new Set(C.products.map(p => p.family))];
+    families.forEach((f, i) => {
+      tabsEl.insertAdjacentHTML('beforeend', `<div class="family-tab ${i === 0 ? 'active' : ''}" data-family="${f}">${f}</div>`);
+    });
+    const grid = document.getElementById('products-grid-all');
+    function renderAll(filter = 'All') {
+      const list = filter === 'All' ? C.products : C.products.filter(p => p.family === filter);
+      grid.innerHTML = '';
+      list.forEach((p, i) => {
+        grid.insertAdjacentHTML('beforeend', `
+          <div class="product-card reveal reveal-delay-${(i % 3) + 1}">
+            <div class="product-img-wrap">
+              <span class="product-family-tag">${p.family}</span>
+              <img src="${p.image}" alt="${p.name}" loading="lazy">
+            </div>
+            <div class="product-info">
+              <span class="product-pack">${p.pack}</span>
+              <h3>${p.name}</h3>
+              <p>${p.description}</p>
+              <div class="product-highlights">
+                ${p.highlights.map(h => `<span>${h}</span>`).join('')}
+              </div>
+              <div class="product-availability">
+                <span>${p.availability}</span>
+                <a href="${p.link}" target="_blank" rel="noopener" class="product-link">Shop →</a>
+              </div>
+            </div>
+          </div>
+        `);
+      });
+    }
+    renderAll();
+    tabsEl.querySelectorAll('.family-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabsEl.querySelectorAll('.family-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        renderAll(tab.dataset.family);
+        window.dispatchEvent(new Event('recalc-reveals'));
+      });
+    });
+
+    // STOCKISTS
+    const sg = document.getElementById('stockists-grid-all');
+    C.stockists.forEach((s, i) => {
+      const initials = s.name.split(' ').map(w => w[0]).slice(0, 2).join('');
+      sg.insertAdjacentHTML('beforeend', `
+        <a href="${s.link}" target="_blank" rel="noopener" class="stockist-card reveal reveal-delay-${(i % 2) + 1}">
+          <div class="stockist-logo">${initials}</div>
+          <div class="stockist-info">
+            <div class="stockist-region">${s.region}</div>
+            <h4>${s.name}</h4>
+            <div class="stockist-note">${s.note}</div>
+          </div>
+          <span class="stockist-arrow">→</span>
+        </a>
+      `);
+    });
+  </script>
+</body>
+</html>

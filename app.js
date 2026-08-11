@@ -1,0 +1,96 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('header');
+  if (header) {
+    const onScroll = () => {
+      if (window.scrollY > 30) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('mobile-open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('mobile-open'));
+    });
+  }
+
+  const pageLinks = document.querySelectorAll('a[href$=".html"]');
+  const transitionOverlay = document.querySelector('.page-transition-overlay');
+  pageLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const targetUrl = link.getAttribute('href');
+      if (!targetUrl || targetUrl.startsWith('#')) return;
+      const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+      const targetPath = targetUrl.split('/').pop();
+      if (currentPath === targetPath) return;
+      e.preventDefault();
+      if (transitionOverlay) {
+        transitionOverlay.classList.add('active');
+        setTimeout(() => { window.location.href = targetUrl; }, 420);
+      } else {
+        window.location.href = targetUrl;
+      }
+    });
+  });
+
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = contactForm.querySelector('#c-name')?.value || 'there';
+      alert(`Thanks ${name}! Your message is on its way — we usually reply within 1-2 business days. 🥨`);
+      contactForm.reset();
+    });
+  }
+
+  const newsletterForms = document.querySelectorAll('.newsletter-form');
+  newsletterForms.forEach(form => {
+    if (form.dataset.bound) return;
+    form.dataset.bound = '1';
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = form.querySelector('.newsletter-input');
+      if (input && input.value) {
+        alert('Thanks! You are on the list — check your inbox soon 🥨');
+        input.value = '';
+      }
+    });
+  });
+
+  const heroTilt = document.getElementById('hero-tilt');
+  if (heroTilt) {
+    let rafId = null;
+    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+    const maxTilt = 6;
+    const rect = heroTilt.getBoundingClientRect();
+    const onMove = (e) => {
+      const r = heroTilt.getBoundingClientRect();
+      const cx = e.clientX - r.left;
+      const cy = e.clientY - r.top;
+      const px = (cx / r.width) - 0.5;
+      const py = (cy / r.height) - 0.5;
+      targetX = (-py) * maxTilt * 2;
+      targetY = px * maxTilt * 2;
+      if (!rafId) loop();
+    };
+    const onLeave = () => { targetX = 0; targetY = 0; };
+    const loop = () => {
+      curX += (targetX - curX) * 0.08;
+      curY += (targetY - curY) * 0.08;
+      heroTilt.style.transform = `perspective(1000px) rotateX(${curX.toFixed(2)}deg) rotateY(${curY.toFixed(2)}deg) translateY(-4px)`;
+      if (Math.abs(targetX - curX) > 0.02 || Math.abs(targetY - curY) > 0.02) {
+        rafId = requestAnimationFrame(loop);
+      } else {
+        rafId = null;
+      }
+    };
+    heroTilt.addEventListener('mousemove', onMove);
+    heroTilt.addEventListener('mouseleave', onLeave);
+  }
+});

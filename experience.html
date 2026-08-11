@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story | Macy & Tailor</title>
+  <meta name="description" content="Meet Macy. The story behind Macy & Tailor artisan snacks — from a single pretzel idea to a shelf of better-for-you crunch across NZ & AU.">
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐘%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <div class="noise-overlay"></div>
+  <div class="page-transition-overlay"></div>
+
+  <script src="site-config.js"></script>
+
+  <header>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="logo-container">
+        <div class="logo-mark">🐘</div>
+        <div class="brand-name">
+          Macy & Tailor
+          <span>For the Love of Snacks</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Products</a></li>
+        <li><a href="experience.html" class="active">Our Story</a></li>
+        <li><a href="gallery.html">Recipes</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <a href="services.html" class="btn btn-primary">The Range</a>
+        <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-banner">
+    <div class="container reveal">
+      <div class="section-label">— Our Story —</div>
+      <h1 style="margin-top: 18px;">Not your average snack. <span class="italic">Not your average elephant.</span></h1>
+      <p>Macy & Tailor started with a single pressed pretzel idea and a mascot who refused to be average. This is how a simple crunch became a snack shelf staple.</p>
+    </div>
+  </section>
+
+  <!-- Hero Story Split -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="timeline-grid">
+        <div class="story-image-wrap reveal">
+          <img id="story-img-1" src="" alt="Artisan Macy & Tailor snacks styled with warm lifestyle aesthetic">
+        </div>
+        <div>
+          <div class="section-label reveal">— Who we are —</div>
+          <h2 class="reveal reveal-delay-1" style="font-size: clamp(2rem, 3.8vw, 3rem); margin: 20px 0 24px; max-width: 520px;">
+            Founded on flavour. <br>Built around <span class="italic">community</span> and crunch.
+          </h2>
+          <div class="reveal reveal-delay-2" style="color: var(--text-body); line-height: 1.85;">
+            <p style="margin-bottom: 18px;">Macy & Tailor launched in <strong>2017</strong> with a simple, almost rebellious premise: that snacks could be tastier, cleaner and a little more fun than what was already sitting on New Zealand shelves.</p>
+            <p style="margin-bottom: 18px;">The first star of the show was our pressed pretzel — a thinner, crispier, oven-baked take on the classic that worked just as well straight from the bag as it did stacked on a grazing board.</p>
+            <p>From there the range grew, but the spirit never changed. We still chase flavour first, cleaner ingredient decks whenever possible, and the kind of packaging you want to keep visible in the pantry.</p>
+          </div>
+          <div class="hero-stats reveal reveal-delay-3" style="margin-top: 40px; gap: 40px;">
+            <div class="hero-stat">
+              <h3 id="year-founded"></h3>
+              <p>Founded in Auckland</p>
+            </div>
+            <div class="hero-stat">
+              <h3>2</h3>
+              <p>Countries stocked</p>
+            </div>
+            <div class="hero-stat">
+              <h3 id="community-count"></h3>
+              <p>Snack community</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">— What we stand for —</div>
+        <h2>Three promises we keep in every bag.</h2>
+        <p>Our values aren't just words on a page — they're baked, seasoned and packed into every Macy & Tailor product that hits the shelf.</p>
+      </div>
+      <div class="values-grid" id="values-grid-story"></div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">— The Journey —</div>
+        <h2>A short history of our <span class="italic">crunch evolution.</span></h2>
+        <p>From one pretzel product to a multi-family range stocked across two countries. We've kept the pace steady so the quality never slips.</p>
+      </div>
+
+      <div class="timeline-grid">
+        <div class="story-image-wrap reveal">
+          <img id="story-img-2" src="" alt="Elegant brand detail shot of Macy & Tailor elephant mascot motif">
+        </div>
+        <div class="timeline-list" id="timeline-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet Macy Mascot -->
+  <section class="section">
+    <div class="container">
+      <div class="products-shell">
+        <div class="products-header" style="flex-direction: column; align-items: center; text-align: center; gap: 20px;">
+          <div class="reveal">
+            <div class="section-label" style="justify-content: center;">— Meet Macy —</div>
+            <h2 style="max-width: 640px; margin: 20px auto 16px;">The <span class="italic">elephant</span> behind every bag.</h2>
+            <p style="max-width: 620px; margin: 0 auto; color: var(--text-body); line-height: 1.8;">
+              Macy is our not-so-average snack elephant — the mascot, the taste-tester-in-chief and the friendly face that reminds us to keep things playful
+              even when we're obsessing over crunch perfection. She never settles for boring snacks, and neither should you.
+            </p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin-top: 40px;">
+          <div class="value-card reveal">
+            <div class="value-num">01</div>
+            <div class="value-icon">🐘</div>
+            <h3>She loves crunch.</h3>
+            <p>A pretzel traditionalist at heart. Pressed Sea Salt is her ride-or-die, but she sneaks Chilli Lime when no one's watching.</p>
+          </div>
+          <div class="value-card reveal reveal-delay-1">
+            <div class="value-num">02</div>
+            <div class="value-icon">🎯</div>
+            <h3>She hates boring.</h3>
+            <p>Plain snacks don't make the cut under Macy's watch. Every flavour needs a point of view and a reason to come back.</p>
+          </div>
+          <div class="value-card reveal reveal-delay-2">
+            <div class="value-num">03</div>
+            <div class="value-icon">🧡</div>
+            <h3>She's one of us.</h3>
+            <p>Lunchbox snacker, platter builder, late-night crunched. Macy is in every moment where snacks make it better.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Video Embed -->
+  <section class="section video-feature-section" style="padding-top: 0;">
+    <div class="container">
+      <div class="video-feature-wrap reveal">
+        <div class="video-feature-header">
+          <div class="section-label" style="justify-content: center;">— Watch Our Story —</div>
+          <h2 style="text-align:center; max-width: 640px; margin: 16px auto 8px; color: var(--cream);">A snack brand that <span class="italic">refuses</span> to be average.</h2>
+          <p style="text-align:center; max-width: 520px; margin: 0 auto 40px; line-height: 1.7; color: var(--sand); opacity: 0.85;">See how Macy &amp; Tailor started and where they're taking the crunch next.</p>
+        </div>
+        <div class="video-iframe-wrap">
+          <div class="video-iframe-inner">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/KE98_ARRMFw?rel=0&modestbranding=1&color=white"
+              title="Macy &amp; Tailor brand story video"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+          <div class="video-feature-badge">
+            <span>▶</span> The Brand Story
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container" style="text-align: center;">
+      <div class="reveal">
+        <h2 style="font-size: clamp(2rem, 4vw, 3rem); max-width: 700px; margin: 0 auto 16px;">
+          Ready to taste the <span class="italic">difference?</span>
+        </h2>
+        <p style="font-size: 1.1rem; color: var(--text-body); max-width: 540px; margin: 0 auto 36px;">
+          Head over to the full range, explore the retailer list, or drop us a line — we're always happy to talk snacks.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="services.html" class="btn btn-primary">See All Products <span>→</span></a>
+          <a href="contact.html" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-name">Macy & Tailor<span>For the Love of Snacks</span></div>
+          <p>Premium artisan snacks crafted in Auckland, New Zealand since 2017.</p>
+          <div class="footer-mascot">🐘 Meet Macy — our not-so-average snack elephant</div>
+        </div>
+        <div class="footer-col">
+          <h5>Explore</h5>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Products</a></li>
+            <li><a href="experience.html">Our Story</a></li>
+            <li><a href="gallery.html">Recipes</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>The Range</h5>
+          <ul class="footer-links">
+            <li>Pressed Pretzels</li><li>Plantain Chips</li><li>Grain Free Tortillas</li><li>Twisted Pretzel Sticks</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Stay Crunchy</h5>
+          <div class="newsletter-box">
+            <p>Join for launches, recipes and drops.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('.newsletter-input').value=''; alert('Thanks! You are on the list 🥨');">
+              <input type="email" class="newsletter-input" placeholder="your@email.com" required>
+              <button type="submit" class="newsletter-btn">→</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">© 2026 Macy & Tailor. All rights reserved. · hello@macyandtailor.com · @macyandtailor</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="animations.js"></script>
+  <script>
+    const C = window.SITE_CONFIG;
+    document.getElementById('story-img-1').src = C.images.storyScene;
+    document.getElementById('story-img-2').src = C.images.mascotScene;
+    document.getElementById('year-founded').textContent = C.founded;
+    document.getElementById('community-count').textContent = C.community;
+
+    // VALUES
+    const vg = document.getElementById('values-grid-story');
+    C.values.forEach((v, i) => {
+      const icons = ['🥨', '🌿', '🎉'];
+      vg.insertAdjacentHTML('beforeend', `
+        <div class="value-card reveal reveal-delay-${i + 1}">
+          <div class="value-num">0${i + 1}</div>
+          <div class="value-icon">${icons[i] || '✨'}</div>
+          <h3>${v.title}</h3>
+          <p>${v.copy}</p>
+        </div>
+      `);
+    });
+
+    // TIMELINE
+    const tl = document.getElementById('timeline-list');
+    C.timeline.forEach((t, i) => {
+      tl.insertAdjacentHTML('beforeend', `
+        <div class="timeline-item reveal" data-timeline>
+          <div class="timeline-year">${t.year}</div>
+          <h3>${t.title}</h3>
+          <p>${t.copy}</p>
+        </div>
+      `);
+    });
+  </script>
+</body>
+</html>
