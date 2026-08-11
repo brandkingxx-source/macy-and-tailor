@@ -77,10 +77,10 @@ window.SITE_CONFIG = {
     emailLink: 'mailto:hello@macyandtailor.com',
     instagramHandle: '@macyandtailor',
     instagramLink: 'https://www.instagram.com/macyandtailor/',
-    website: 'www.macyandtailor.com',
-    websiteLink: 'https://www.macyandtailor.com/',
-    youtubeLabel: 'Macy & Tailor - 30',
-    youtubeLink: 'https://www.youtube.com/watch?v=KE98_ARRMFw'
+    website: 'https://youtu.be/KE98_ARRMFw',
+    websiteLink: 'https://youtu.be/KE98_ARRMFw',
+    youtubeLabel: 'Brand Video Link (YouTube)',
+    youtubeLink: 'https://youtu.be/KE98_ARRMFw'
   },
   images: brandImages,
   stockists: [

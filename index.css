@@ -411,20 +411,21 @@ header.scrolled {
 
 /* ========== HERO SECTION ========== */
 .hero {
-  padding: 180px 0 100px;
+  padding: 160px 0 80px;
   min-height: 100vh;
   display: flex;
   align-items: center;
   position: relative;
   z-index: 2;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 80px;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
   align-items: center;
+  width: 100%;
 }
 
 .eyebrow {
@@ -560,101 +561,104 @@ header.scrolled {
 
 .hero-visual {
   position: relative;
-  perspective: 1500px;
+  padding: 20px 0 20px 0;
 }
 
 .hero-image-wrap {
   position: relative;
-  border-radius: var(--radius-xl);
+  border-radius: 28px;
   overflow: hidden;
-  box-shadow: var(--shadow-large);
-  transform-style: preserve-3d;
-  transform: rotateY(-4deg) rotateX(2deg);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  aspect-ratio: 4 / 5;
+  box-shadow: 0 40px 100px rgba(26, 22, 19, 0.28);
+  aspect-ratio: 3 / 4;
   background: var(--charcoal);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-image-wrap:hover {
-  transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+  transform: scale(1.02);
 }
 
-.hero-video-frame {
-  position: relative;
+.hero-video {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  background: var(--charcoal);
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
 }
 
-.hero-video-iframe {
+.hero-video-overlay {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 177.77777778vh;
-  height: 56.25vw;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%) scale(1.35);
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(26, 22, 19, 0.08) 0%,
+    rgba(26, 22, 19, 0.0) 40%,
+    rgba(26, 22, 19, 0.45) 100%
+  );
   pointer-events: none;
+  z-index: 2;
 }
 
 .hero-video-badge {
   position: absolute;
-  top: 18px;
-  left: 18px;
-  background: rgba(26, 22, 19, 0.75);
+  bottom: 20px;
+  left: 20px;
+  background: rgba(26, 22, 19, 0.72);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--cream);
   padding: 8px 16px;
   border-radius: 100px;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   z-index: 3;
 }
 
 .live-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 10px #22c55e;
-  animation: pulse-live 1.8s infinite;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+  flex-shrink: 0;
+  animation: pulse-live 1.8s ease-in-out infinite;
 }
 
 @keyframes pulse-live {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.5; }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
+/* Float cards sit INSIDE the visual column, around the video frame */
 .hero-float-card {
   position: absolute;
-  background: rgba(255, 253, 249, 0.95);
+  background: rgba(255, 253, 249, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-radius: var(--radius-lg);
+  border-radius: 18px;
   padding: 14px 18px;
-  box-shadow: 0 20px 45px rgba(26, 22, 19, 0.14);
+  box-shadow: 0 16px 40px rgba(26, 22, 19, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.9);
-  z-index: 5;
+  z-index: 10;
   display: flex;
   align-items: center;
   gap: 12px;
-  max-width: 240px;
+  min-width: 180px;
+  max-width: 220px;
 }
 
 .float-card-icon-badge {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--caramel-light), var(--gold-soft));
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--cream-warm), var(--sand));
   color: var(--caramel-deep);
   display: flex;
   align-items: center;
@@ -663,36 +667,47 @@ header.scrolled {
 }
 
 .float-card-icon-badge.badge-green {
-  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-  color: #2e7d32;
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  color: #15803d;
 }
 
 .float-card-icon-badge.badge-gold {
-  background: linear-gradient(135deg, #fff8e1, #ffe082);
-  color: #f57f17;
+  background: linear-gradient(135deg, #fef9c3, #fde68a);
+  color: #b45309;
 }
 
+/* Card positions relative to the hero-visual container */
 .hero-float-card.card-1 {
-  top: -16px;
-  right: -16px;
+  top: 0px;
+  right: -12px;
   animation: float-y 6s ease-in-out infinite;
 }
 
 .hero-float-card.card-2 {
-  top: 45%;
-  left: -20px;
+  top: 42%;
+  left: -12px;
+  transform: translateY(-50%);
   animation: float-y 7s ease-in-out infinite 1.5s;
 }
 
 .hero-float-card.card-3 {
-  bottom: -16px;
-  right: 20px;
+  bottom: 0px;
+  right: -12px;
   animation: float-y 5.5s ease-in-out infinite 0.8s;
 }
 
 @keyframes float-y {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-float-card.card-2 {
+  animation: float-y-mid 7s ease-in-out infinite 1.5s;
+}
+
+@keyframes float-y-mid {
+  0%, 100% { transform: translateY(-50%); }
+  50% { transform: translateY(calc(-50% - 10px)); }
 }
 
 .float-card-title {
