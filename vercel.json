@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "routes": [
-    { "src": "/", "dest": "/index.html" },
-    { "src": "/products", "dest": "/services.html" },
-    { "src": "/story", "dest": "/experience.html" },
-    { "src": "/recipes", "dest": "/gallery.html" },
-    { "src": "/contact", "dest": "/contact.html" },
-    { "handle": "filesystem" }
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/products", "destination": "/services.html" },
+    { "source": "/story", "destination": "/experience.html" },
+    { "source": "/recipes", "destination": "/gallery.html" },
+    { "source": "/contact", "destination": "/contact.html" }
   ],
   "headers": [
     {
