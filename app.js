@@ -166,6 +166,16 @@ document.addEventListener('DOMContentLoaded', () => {
       ytTag.async = true;
       document.head.appendChild(ytTag);
     }
+    // Poll as a fallback in case the API ready callback is missed
+    // (e.g. cached iframe_api script), so the brand video always starts.
+    const playerPoll = setInterval(() => {
+      if (brandPlayerHost.querySelector('iframe')) {
+        clearInterval(playerPoll);
+        return;
+      }
+      if (window.YT && window.YT.Player) createBrandPlayer();
+    }, 1200);
+    setTimeout(() => clearInterval(playerPoll), 30000);
     window.addEventListener('resize', fitIframe);
     setTimeout(fitIframe, 1200);
   }
