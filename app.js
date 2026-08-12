@@ -68,6 +68,38 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Robust video playback: if any source 404s, step through the global
+  // fallback pool. If every option is exhausted, hide the element so its
+  // poster / Ken Burns layer or ambient overlay carries the visual.
+  const videoPool = (window.VIDEO_FALLBACKS || []).filter(Boolean);
+  document.querySelectorAll('.hero-video, .ambient-video').forEach(video => {
+    if (video.dataset.robust) return;
+    video.dataset.robust = '1';
+    const used = new Set([...video.querySelectorAll('source')].map(s => s.getAttribute('src')).filter(Boolean));
+    const tryPlay = () => {
+      const p = video.play();
+      if (p && p.catch) p.catch(() => {});
+    };
+    video.addEventListener('loadeddata', tryPlay, { once: true });
+    video.addEventListener('error', () => {
+      const next = videoPool.find(u => !used.has(u));
+      if (next) {
+        used.add(next);
+        video.querySelectorAll('source').forEach(s => s.remove());
+        const src = document.createElement('source');
+        src.src = next;
+        src.type = 'video/mp4';
+        video.appendChild(src);
+        video.load();
+        tryPlay();
+      } else {
+        video.style.display = 'none';
+        if (video.parentElement) video.parentElement.classList.add('media-failed');
+      }
+    }, true);
+    if (video.readyState > 0) tryPlay();
+  });
+
   const heroTilt = document.getElementById('hero-tilt');
   if (heroTilt) {
     let rafId = null;

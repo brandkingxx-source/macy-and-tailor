@@ -61,10 +61,31 @@
           <div class="family-tabs reveal reveal-delay-2" id="family-tabs-all"></div>
         </div>
 
-        <div class="products-grid" id="products-grid-all" style="grid-template-columns: repeat(3, 1fr);"></div>
+        <div class="products-grid" id="products-grid-all"></div>
       </div>
     </div>
   </section>
+
+  <!-- Ambient Video Strip -->
+  <div class="video-ambient-strip" aria-hidden="true">
+    <video
+      class="ambient-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?w=1600&auto=format&fit=crop&q=60"
+    >
+      <source src="https://cdn.pixabay.com/video/2021/01/11/61705-500316058_small.mp4" type="video/mp4">
+    </video>
+    <div class="ambient-overlay">
+      <div class="ambient-text reveal">
+        <span class="ambient-label">— Clean labels, big crunch —</span>
+        <p>Oven baked. Seasoned with <em style="font-style:normal;">intention.</em></p>
+      </div>
+    </div>
+  </div>
 
   <!-- Family Spotlight -->
   <section class="section" style="padding-top: 40px;">
@@ -82,7 +103,7 @@
             <p style="margin-bottom: 18px;">Macy & Tailor ranges are consistently crafted without artificial flavours and without preservatives. We lean on oven baking, clean seasonings and quality base ingredients so the flavour on the label is the flavour in the bag.</p>
             <p>Where we can go cleaner, we do — palm-oil free formats, dairy free variants and vegan options sit alongside the more indulgent flavours, so there's always something in reaching distance.</p>
           </div>
-          <div class="values-grid" style="grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px;">
+          <div class="values-grid grid-2" style="gap: 16px; margin-top: 32px;">
             <div class="value-card reveal reveal-delay-3" style="padding: 28px 24px;">
               <div class="value-icon" style="width: 48px; height: 48px; border-radius: 14px; font-size: 22px; margin-bottom: 18px;">🌾</div>
               <h3 style="font-size: 1.15rem; margin-bottom: 8px;">Clean Labels</h3>
@@ -161,7 +182,7 @@
           </div>
         </div>
       </div>
-      <div class="copyright">© 2026 Macy & Tailor. All rights reserved. · hello@macyandtailor.com · @macyandtailor</div>
+      <div class="copyright">© 2026 Macy & Tailor. All rights reserved. · @macyandtailor</div>
     </div>
   </footer>
 
@@ -169,11 +190,15 @@
   <script src="animations.js"></script>
   <script>
     const C = window.SITE_CONFIG;
-    const tryLoad = (el, src) => {
-      const t = new Image();
-      t.onload = () => { el.src = src; };
-      t.onerror = () => {};
-      t.src = src;
+    const tryLoad = (el, src, attempts = 3) => {
+      if (!el || !src) return;
+      const attempt = (n) => {
+        const t = new Image();
+        t.onload = () => { el.src = src; };
+        t.onerror = () => { if (n < attempts) setTimeout(() => attempt(n + 1), 800 * n + 500); };
+        t.src = src;
+      };
+      attempt(1);
     };
     tryLoad(document.getElementById('story-img'), C.images.retailScene);
 

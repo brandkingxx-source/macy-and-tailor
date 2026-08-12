@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Macy & Tailor</title>
-  <meta name="description" content="Get in touch with the Macy & Tailor team — enquiries, stockists, collaborations, platters and snack love. hello@macyandtailor.com">
+  <meta name="description" content="Get in touch with the Macy & Tailor team — enquiries, stockists, collaborations, platters and snack love. Reach us on Instagram @macyandtailor.">
   <link rel="stylesheet" href="index.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐘%3C/text%3E%3C/svg%3E">
 </head>
@@ -99,11 +99,11 @@
 
           <div class="info-item">
             <div class="info-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
             <div class="info-content">
-              <strong>Email Desk</strong>
-              <a id="email-link" href="mailto:hello@macyandtailor.com">hello@macyandtailor.com</a>
+              <strong>Community</strong>
+              <span id="community-val">5.7K followers · 1.4% engagement · weekly drops</span>
             </div>
           </div>
 
@@ -157,14 +157,32 @@
             <a id="web-social" target="_blank" rel="noopener" href="https://youtu.be/KE98_ARRMFw" class="social-link" aria-label="Website Link in Bio">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
             </a>
-            <a id="email-social" href="mailto:hello@macyandtailor.com" class="social-link" aria-label="Email">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Ambient Video Strip -->
+  <div class="video-ambient-strip" aria-hidden="true">
+    <video
+      class="ambient-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="https://images.unsplash.com/photo-1581090700227-1e37b190418e?w=1600&auto=format&fit=crop&q=60"
+    >
+      <source src="https://cdn.pixabay.com/video/2022/09/25/132535-753956296_small.mp4" type="video/mp4">
+    </video>
+    <div class="ambient-overlay">
+      <div class="ambient-text reveal">
+        <span class="ambient-label">— We reply to every message —</span>
+        <p>Snacks in mind. <em style="font-style:normal;">Always.</em></p>
+      </div>
+    </div>
+  </div>
 
   <!-- Stockists Section -->
   <section class="section" style="padding-top: 40px;">
@@ -183,7 +201,7 @@
             <a href="services.html" class="btn btn-secondary">Browse Full Range <span>→</span></a>
           </div>
         </div>
-        <div class="stockists-grid" id="contact-stockists" style="grid-template-columns: repeat(2, 1fr);"></div>
+        <div class="stockists-grid" id="contact-stockists"></div>
       </div>
     </div>
   </section>
@@ -251,7 +269,7 @@
           </div>
         </div>
       </div>
-      <div class="copyright">© 2026 Macy & Tailor. All rights reserved. · hello@macyandtailor.com · @macyandtailor</div>
+      <div class="copyright">© 2026 Macy & Tailor. All rights reserved. · @macyandtailor</div>
     </div>
   </footer>
 
@@ -259,9 +277,6 @@
   <script src="animations.js"></script>
   <script>
     const C = window.SITE_CONFIG;
-    document.getElementById('email-link').href = C.contact.emailLink;
-    document.getElementById('email-link').textContent = C.contact.email;
-    document.getElementById('email-social').href = C.contact.emailLink;
     document.getElementById('ig-link-2').href = C.contact.instagramLink;
     document.getElementById('ig-link-2').textContent = C.contact.instagramHandle;
     document.getElementById('ig-social').href = C.contact.instagramLink;
@@ -272,6 +287,9 @@
     document.getElementById('yt-link').textContent = C.contact.youtubeLabel;
     document.getElementById('yt-social').href = C.contact.youtubeLink;
     document.getElementById('location-val').textContent = C.location;
+    // Community line from the audit's Profile Metrics
+    const cv = document.getElementById('community-val');
+    if (cv) cv.textContent = `${(C.auditMetrics.followers / 1000).toFixed(1)}K followers · ${C.auditMetrics.engagement} engagement · ${C.auditMetrics.frequency.toLowerCase()} drops`;
 
     // CONTACT STOCKISTS
     const cs = document.getElementById('contact-stockists');

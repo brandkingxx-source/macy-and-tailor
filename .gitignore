@@ -1,0 +1,9 @@
+# Tool state
+.freebuff/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Vercel
+.vercel/

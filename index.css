@@ -178,6 +178,31 @@ body.page-loaded .page-transition-overlay {
   transform: translateY(-100%);
 }
 
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--caramel), var(--gold), var(--rust));
+  transform-origin: left;
+  transform: scaleX(0);
+  z-index: 10001;
+  pointer-events: none;
+  box-shadow: 0 1px 6px rgba(154, 95, 45, 0.35);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ========== HEADER & NAV ========== */
 header {
   position: fixed;
@@ -413,8 +438,12 @@ header.scrolled {
 .hero {
   padding: 160px 0 80px;
   min-height: 100vh;
+  /* Column flex: prevents the full-width marquee sibling from
+     shrinking .hero-grid to its min-content (the old crush bug). */
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
   position: relative;
   z-index: 2;
   overflow: visible;
@@ -426,6 +455,8 @@ header.scrolled {
   gap: 64px;
   align-items: center;
   width: 100%;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .eyebrow {
@@ -578,6 +609,30 @@ header.scrolled {
   transform: scale(1.02);
 }
 
+.hero-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Ken Burns poster: slow cinematic drift that keeps the hero alive
+   before the video loads or if every video source fails. */
+.hero-poster {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  object-fit: cover;
+  animation: hero-kenburns 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes hero-kenburns {
+  0%   { transform: scale(1) translate(0, 0); }
+  50%  { transform: scale(1.06) translate(-1.2%, 1%); }
+  100% { transform: scale(1.12) translate(1.5%, -1.5%); }
+}
+
 .hero-video {
   width: 100%;
   height: 100%;
@@ -585,6 +640,7 @@ header.scrolled {
   display: block;
   position: absolute;
   inset: 0;
+  z-index: 1;
 }
 
 .hero-video-overlay {
@@ -676,23 +732,30 @@ header.scrolled {
   color: #b45309;
 }
 
-/* Card positions relative to the hero-visual container */
+.hero-float-card .float-card-icon-badge svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Card positions relative to the hero-visual container.
+   They overlap the frame edges by exactly the container padding (32px),
+   so they never get clipped by the viewport at any desktop width. */
 .hero-float-card.card-1 {
-  top: 0px;
-  right: -12px;
+  top: 9%;
+  right: -32px;
   animation: float-y 6s ease-in-out infinite;
 }
 
 .hero-float-card.card-2 {
-  top: 42%;
-  left: -12px;
+  top: 50%;
+  left: -32px;
   transform: translateY(-50%);
-  animation: float-y 7s ease-in-out infinite 1.5s;
+  animation: float-y-mid 7s ease-in-out infinite 1.5s;
 }
 
 .hero-float-card.card-3 {
-  bottom: 0px;
-  right: -12px;
+  bottom: 9%;
+  right: -32px;
   animation: float-y 5.5s ease-in-out infinite 0.8s;
 }
 
@@ -752,13 +815,22 @@ header.scrolled {
   border-bottom: 1px solid var(--border-light);
   margin-top: 60px;
   background: rgba(250, 246, 240, 0.5);
+  width: 100%;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
 }
 
 .marquee-track {
   display: flex;
-  gap: 80px;
+  gap: 0;
   white-space: nowrap;
-  animation: marquee 35s linear infinite;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+  will-change: transform;
 }
 
 .marquee-item {
@@ -770,6 +842,8 @@ header.scrolled {
   font-weight: 500;
   color: var(--charcoal-muted);
   opacity: 0.75;
+  /* Margin (not gap) so the -50% translate loop is seamless */
+  margin-right: 80px;
 }
 
 .marquee-item .dot {
@@ -1247,6 +1321,65 @@ header.scrolled {
   font-size: 1rem;
   color: var(--text-body);
   line-height: 1.75;
+}
+
+/* ========== MASCOT SHOWCASE ========== */
+.mascot-showcase {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 56px auto 8px;
+  width: 100%;
+  max-width: 560px;
+}
+
+.mascot-ring {
+  position: absolute;
+  width: 158px;
+  height: 158px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(212, 162, 74, 0.55);
+  animation: mascot-spin 18s linear infinite;
+  pointer-events: none;
+}
+
+.mascot-showcase img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 24px 60px rgba(26, 22, 19, 0.18);
+  animation: mascot-float 5s ease-in-out infinite;
+  background: var(--cream-warm);
+}
+
+.mascot-chip {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  background: var(--charcoal);
+  color: var(--gold-soft);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 10px 24px rgba(26, 22, 19, 0.25);
+  border: 1px solid rgba(212, 162, 74, 0.35);
+  white-space: nowrap;
+}
+
+@keyframes mascot-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes mascot-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* ========== RECIPES ========== */
@@ -1913,11 +2046,52 @@ footer::before {
   }
   .hero-image-wrap {
     max-width: 560px;
+    margin: 0 auto;
   }
   .products-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 28px;
+  }
+}
+
+/* Tablet: float cards stay visible but compact and inside the frame */
+@media (min-width: 481px) and (max-width: 900px) {
+  .hero-float-card {
+    min-width: 0;
+    max-width: 168px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    gap: 10px;
+  }
+  .hero-float-card .float-card-icon-badge {
+    width: 30px;
+    height: 30px;
+  }
+  .hero-float-card .float-card-icon-badge svg {
+    width: 15px;
+    height: 15px;
+  }
+  .hero-float-card .float-card-title {
+    font-size: 0.88rem;
+    margin-bottom: 2px;
+  }
+  .hero-float-card .float-card-sub {
+    font-size: 0.72rem;
+  }
+  .hero-float-card .float-card-accent {
+    display: none;
+  }
+  .hero-float-card.card-1 {
+    top: 4%;
+    right: 3%;
+  }
+  .hero-float-card.card-2 {
+    left: 3%;
+  }
+  .hero-float-card.card-3 {
+    bottom: 4%;
+    right: 3%;
   }
 }
 
@@ -2318,5 +2492,95 @@ img {
   }
   .marquee-item {
     font-size: 1.3rem;
+  }
+}
+
+/* ========== RESPONSIVE GRID HELPERS ========== */
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+.macy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+  .grid-2,
+  .macy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========== MOBILE POLISH ========== */
+@media (max-width: 768px) {
+  .contact-info-card {
+    position: relative;
+    top: 0;
+  }
+  .contact-grid {
+    gap: 48px;
+  }
+  .stockist-card {
+    padding: 22px 20px;
+    gap: 18px;
+  }
+  .products-shell {
+    padding: 48px 20px;
+  }
+  .value-card {
+    padding: 40px 28px 36px;
+  }
+}
+
+/* Long content inside cards must never overflow */
+.product-availability {
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.info-content a,
+.info-content span {
+  overflow-wrap: anywhere;
+}
+
+.newsletter-input {
+  min-width: 0;
+}
+
+.video-iframe-inner iframe {
+  max-width: 100%;
+}
+
+/* Give the hero visual breathing room on small screens */
+@media (max-width: 768px) {
+  .hero-visual {
+    margin-top: 8px;
+  }
+}
+
+/* Keep product meta tidy on tiny phones */
+@media (max-width: 400px) {
+  .product-info {
+    padding: 20px 18px 24px;
+  }
+  .stockist-logo {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+  }
+  .stockist-card {
+    padding: 18px 16px;
+  }
+  .footer-mascot {
+    font-size: 0.8rem;
+    padding: 8px 14px;
+  }
+  .mascot-showcase img {
+    width: 118px;
+    height: 118px;
+  }
+  .mascot-ring {
+    width: 132px;
+    height: 132px;
   }
 }

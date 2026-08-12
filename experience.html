@@ -67,16 +67,16 @@
           </div>
           <div class="hero-stats reveal reveal-delay-3" style="margin-top: 40px; gap: 40px;">
             <div class="hero-stat">
-              <h3 id="year-founded"></h3>
-              <p>Founded in Auckland</p>
+              <h3 class="count-up" data-target="5.7" data-decimals="1" data-suffix="K">0K</h3>
+              <p>Instagram followers</p>
             </div>
             <div class="hero-stat">
-              <h3>2</h3>
-              <p>Countries stocked</p>
+              <h3 class="count-up" data-target="1.4" data-decimals="1" data-suffix="%">0%</h3>
+              <p>Avg engagement rate</p>
             </div>
             <div class="hero-stat">
-              <h3 id="community-count"></h3>
-              <p>Snack community</p>
+              <h3 class="count-up" data-target="895">0</h3>
+              <p>Community posts</p>
             </div>
           </div>
         </div>
@@ -128,7 +128,14 @@
             </p>
           </div>
         </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin-top: 40px;">
+        <div class="mascot-showcase reveal">
+          <div class="mascot-ring"></div>
+          <img id="mascot-img-story"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Elefante_africano_de_sabana_%28Loxodonta_africana%29%2C_parque_nacional_Kruger%2C_Sud%C3%A1frica%2C_2018-07-25%2C_DD_06.jpg/960px-Elefante_africano_de_sabana_%28Loxodonta_africana%29%2C_parque_nacional_Kruger%2C_Sud%C3%A1frica%2C_2018-07-25%2C_DD_06.jpg"
+            alt="Macy the elephant — Macy &amp; Tailor mascot">
+          <span class="mascot-chip">🐘 Meet Macy</span>
+        </div>
+        <div class="macy-grid" style="gap: 28px; margin-top: 40px;">
           <div class="value-card reveal">
             <div class="value-num">01</div>
             <div class="value-icon">🐘</div>
@@ -236,7 +243,7 @@
           </div>
         </div>
       </div>
-      <div class="copyright">© 2026 Macy & Tailor. All rights reserved. · hello@macyandtailor.com · @macyandtailor</div>
+      <div class="copyright">© 2026 Macy & Tailor. All rights reserved. · @macyandtailor</div>
     </div>
   </footer>
 
@@ -244,16 +251,19 @@
   <script src="animations.js"></script>
   <script>
     const C = window.SITE_CONFIG;
-    const tryLoad = (el, src) => {
-      const t = new Image();
-      t.onload = () => { el.src = src; };
-      t.onerror = () => {};
-      t.src = src;
+    const tryLoad = (el, src, attempts = 3) => {
+      if (!el || !src) return;
+      const attempt = (n) => {
+        const t = new Image();
+        t.onload = () => { el.src = src; };
+        t.onerror = () => { if (n < attempts) setTimeout(() => attempt(n + 1), 800 * n + 500); };
+        t.src = src;
+      };
+      attempt(1);
     };
-    tryLoad(document.getElementById('story-img-1'), C.images.brandDetail1);
-    tryLoad(document.getElementById('story-img-2'), C.images.brandDetail2);
-    document.getElementById('year-founded').textContent = C.founded;
-    document.getElementById('community-count').textContent = C.community;
+    tryLoad(document.getElementById('story-img-1'), C.images.storyScene);
+    tryLoad(document.getElementById('story-img-2'), C.images.mascotScene);
+    tryLoad(document.getElementById('mascot-img-story'), C.images.mascotScene);
 
     // VALUES
     const vg = document.getElementById('values-grid-story');

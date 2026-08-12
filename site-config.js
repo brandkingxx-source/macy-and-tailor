@@ -62,6 +62,15 @@ const brandImages = {
     'https://images.squarespace-cdn.com/content/v1/695c4c4bae51e74df694af53/0d000d04-f54a-4d6a-a43e-28bb76671c07/Pretzels_Pretzel_Sticks_+Caramelized+Onion_160g.png?format=1200w'
 };
 
+// Verified hotlinkable fallback videos (pixabay CDN, checked for availability).
+// Used by app.js to keep every video playing even if a primary source dies.
+window.VIDEO_FALLBACKS = [
+  'https://cdn.pixabay.com/video/2020/11/07/55304-499594262_small.mp4',
+  'https://cdn.pixabay.com/video/2023/03/08/153817-806178213_small.mp4',
+  'https://cdn.pixabay.com/video/2022/09/25/132535-753956296_small.mp4',
+  'https://cdn.pixabay.com/video/2021/01/11/61705-500316058_small.mp4'
+];
+
 window.SITE_CONFIG = {
   brand: 'Macy & Tailor',
   legalName: 'Macy and Tailor',
@@ -72,15 +81,32 @@ window.SITE_CONFIG = {
   location: 'Auckland, New Zealand',
   community: '5.7K Instagram community',
   retailersLine: 'Found across selected retailers in New Zealand and Australia',
+  // Contact channels below are taken directly from the audit file in the
+  // repo root (Instagram_Audit_@macyandtailor_2026-08-09.html): the audit
+  // lists exactly two contact surfaces — Instagram and the website/link-in-bio.
+  // No email, phone or address appears anywhere in the audit, so none is shown.
   contact: {
-    email: 'hello@macyandtailor.com',
-    emailLink: 'mailto:hello@macyandtailor.com',
     instagramHandle: '@macyandtailor',
     instagramLink: 'https://www.instagram.com/macyandtailor/',
     website: 'https://youtu.be/KE98_ARRMFw',
     websiteLink: 'https://youtu.be/KE98_ARRMFw',
     youtubeLabel: 'Brand Video Link (YouTube)',
     youtubeLink: 'https://youtu.be/KE98_ARRMFw'
+  },
+  // Verified community metrics from the same audit file (Profile Metrics
+  // section): followers 5716, following 446, total posts 895, engagement
+  // 1.40%, avg likes 42, avg comments 38, frequency weekly, last post 4d ago.
+  auditMetrics: {
+    followers: 5716,
+    following: 446,
+    posts: 895,
+    engagement: '1.40%',
+    avgLikes: 42,
+    avgComments: 38,
+    frequency: 'Weekly',
+    lastPost: '4d ago',
+    audience: 'Home cooks & food enthusiasts aged 22–45, skewing female',
+    topics: { food: '87%', fashion: '9%', parenting: '4%' }
   },
   images: brandImages,
   stockists: [
