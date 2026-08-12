@@ -2069,6 +2069,72 @@ footer::before {
   }
 }
 
+/* Mobile / tablet: the hero video becomes the full-bleed hero background
+   (same treatment the desktop hero gives it) instead of a framed card that
+   stacks below the content. */
+@media (max-width: 1100px) {
+  /* Let the absolutely-positioned hero-visual anchor to the whole hero
+     (not the .container, which is position: relative site-wide). */
+  .hero .container {
+    position: static;
+  }
+  .hero-visual {
+    position: absolute;
+    inset: 0;
+    padding: 0;
+    margin: 0;
+    z-index: 0;
+  }
+  .hero-image-wrap,
+  .hero-image-wrap:hover {
+    max-width: none;
+    margin: 0;
+    aspect-ratio: auto;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+  /* Stronger scrim so light hero text stays readable over the video */
+  .hero-video-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(26, 22, 19, 0.78) 0%,
+      rgba(26, 22, 19, 0.4) 45%,
+      rgba(26, 22, 19, 0.62) 100%
+    );
+  }
+  .hero-video-badge {
+    display: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+  .hero-title {
+    color: var(--cream);
+  }
+  .hero-title .highlight {
+    color: var(--gold-soft);
+  }
+  .hero-desc {
+    color: rgba(250, 246, 240, 0.88);
+  }
+  .hero-cta-group .btn-secondary {
+    color: var(--cream);
+    border-color: rgba(250, 246, 240, 0.85);
+  }
+  .hero-stat h3 {
+    color: var(--cream);
+  }
+  .hero-stat p {
+    color: rgba(250, 246, 240, 0.72);
+  }
+  .marquee-wrap {
+    background: rgba(250, 246, 240, 0.92);
+  }
+}
+
 /* Tablet: float cards stay visible but compact and inside the frame */
 @media (min-width: 481px) and (max-width: 900px) {
   .hero-float-card {
@@ -2199,12 +2265,8 @@ footer::before {
   .hero-image-wrap {
     transform: none;
   }
-  .hero-float-card.card-1,
-  .hero-float-card.card-3 {
-    left: 12px;
-  }
-  .hero-float-card.card-2 {
-    right: 12px;
+  .hero-float-card {
+    display: none;
   }
   .cursor-dot, .cursor-ring { display: none; }
 }
@@ -2562,13 +2624,6 @@ img {
 
 .video-iframe-inner iframe {
   max-width: 100%;
-}
-
-/* Give the hero visual breathing room on small screens */
-@media (max-width: 768px) {
-  .hero-visual {
-    margin-top: 8px;
-  }
 }
 
 /* Keep product meta tidy on tiny phones */
