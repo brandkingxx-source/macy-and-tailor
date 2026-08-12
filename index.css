@@ -243,14 +243,8 @@ header.scrolled {
   width: 46px;
   height: 46px;
   border-radius: 50%;
+  object-fit: cover;
   background: linear-gradient(135deg, var(--caramel) 0%, var(--gold) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--cream);
-  font-family: 'Fraunces', serif;
   box-shadow: 0 6px 20px rgba(193, 127, 72, 0.25);
   transition: var(--transition-smooth);
   position: relative;
@@ -269,10 +263,6 @@ header.scrolled {
 .logo-container:hover .logo-mark {
   transform: rotate(-8deg) scale(1.08);
   box-shadow: 0 10px 30px rgba(193, 127, 72, 0.35);
-}
-
-.logo-container:hover .logo-mark::after {
-  transform: translateX(100%);
 }
 
 .brand-name {
