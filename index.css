@@ -643,6 +643,30 @@ header.scrolled {
   z-index: 1;
 }
 
+/* Brand YouTube spot fades in over the native footage once it plays */
+.hero-brand-player {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.hero-brand-player.playing {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hero-brand-player iframe {
+  pointer-events: none;
+  max-width: none;
+}
+
 .hero-video-overlay {
   position: absolute;
   inset: 0;

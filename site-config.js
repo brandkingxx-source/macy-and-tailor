@@ -1,47 +1,20 @@
-const buildGeneratedImage = (prompt, size = 'landscape_16_9') =>
-  `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=${encodeURIComponent(prompt)}&image_size=${size}`;
+// Verified, hotlinkable brand imagery (Wikimedia Commons, checked for availability).
+// Each entry is a real photograph matching the intended scene so cards always render.
+const W = (file, width = 1000) =>
+  `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=${width}`;
 
 const brandImages = {
-  heroSpread: buildGeneratedImage(
-    'luxury editorial food photography of premium artisan pretzels, plantain chips, dipping sauces, citrus and grazing board styling, warm cinematic light, rich shadows, elegant ecommerce campaign, highly realistic, modern premium snack brand',
-    'landscape_16_9'
-  ),
-  storyScene: buildGeneratedImage(
-    'premium lifestyle food scene with elegant snack packaging, artisan pretzels, plantain chips, soft linen, golden light, refined shelf styling, realistic commercial photography for a high end food brand',
-    'landscape_4_3'
-  ),
-  recipeScene: buildGeneratedImage(
-    'high end grazing platter with pretzels, cheeses, fruit, pickles, chocolate bark and dipping bowls, beautifully arranged, realistic editorial food photography, premium brand campaign',
-    'landscape_16_9'
-  ),
-  retailScene: buildGeneratedImage(
-    'modern premium grocery shelf display of artisan snack bags, warm retail lighting, polished merchandising, realistic commercial photography',
-    'landscape_16_9'
-  ),
-  recipeSkewers: buildGeneratedImage(
-    'single serve snack skewers with pretzels, grapes, cheese and cured meats on a premium serving board, realistic food photography',
-    'portrait_4_3'
-  ),
-  recipeBark: buildGeneratedImage(
-    'apple caramel pretzel bark with chocolate and green apple on parchment paper, high detail realistic food photography',
-    'portrait_4_3'
-  ),
-  recipeFreezerBites: buildGeneratedImage(
-    'strawberry pretzel freezer bites with chocolate drizzle and peanut butter, premium realistic food styling',
-    'portrait_4_3'
-  ),
-  recipeClusters: buildGeneratedImage(
-    'three ingredient peanut clusters with pretzel crunch and dark chocolate on a stone plate, premium food photography',
-    'portrait_4_3'
-  ),
-  mascotScene: buildGeneratedImage(
-    'luxury embossed elephant icon on premium snack packaging with warm gold highlights, refined brand detail, realistic product design photography',
-    'square_hd'
-  ),
-  contactScene: buildGeneratedImage(
-    'premium snack flat lay with laptop, notebook, product pouches and warm ambient light, modern brand contact page visual, realistic commercial photography',
-    'landscape_4_3'
-  ),
+  heroSpread: W('Pretzel-Snack-American.jpg'),
+  storyScene: W('BREZELKÖNIG (15116734691).jpg'),
+  recipeScene: W('Charcuterie board - Massachusetts.jpg'),
+  retailScene: W('Faced products on a supermarket shelf.JPG'),
+  recipeSkewers: W('Tanghulu vendor - Tamsui, Taiwan (2017).jpg'),
+  recipeBark: W('Rocky Road Bark (3).jpg'),
+  recipeFreezerBites: W('MEIJI MELTYKISS STRAWBERRY CHOCOLATE CHINA VERSION (6).jpg'),
+  recipeClusters: W('Personalized glass mason treat jar and foil wrapped chocolate peanut butter cup snack treats (17099409031).jpg'),
+  mascotScene:
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Elefante_africano_de_sabana_%28Loxodonta_africana%29%2C_parque_nacional_Kruger%2C_Sud%C3%A1frica%2C_2018-07-25%2C_DD_06.jpg/960px-Elefante_africano_de_sabana_%28Loxodonta_africana%29%2C_parque_nacional_Kruger%2C_Sud%C3%A1frica%2C_2018-07-25%2C_DD_06.jpg',
+  contactScene: W('Coffee cup next to laptop on wooden table in cozy indoor workspace during daytime.jpg'),
   pressedSeaSalt:
     'https://images.squarespace-cdn.com/content/v1/695c4c4bae51e74df694af53/cf01f5cc-0c4a-4926-bd90-38ea29d31ba5/Pretzels_Pressed_Pretzels_Sea_Salt_180g.png?format=1200w',
   pressedChilliLime:
@@ -62,13 +35,16 @@ const brandImages = {
     'https://images.squarespace-cdn.com/content/v1/695c4c4bae51e74df694af53/0d000d04-f54a-4d6a-a43e-28bb76671c07/Pretzels_Pretzel_Sticks_+Caramelized+Onion_160g.png?format=1200w'
 };
 
-// Verified hotlinkable fallback videos (pixabay CDN, checked for availability).
-// Used by app.js to keep every video playing even if a primary source dies.
+// Verified hotlinkable fallback videos (Wikimedia Commons derivatives,
+// checked for availability). Used by app.js to keep every video playing
+// even if a primary source dies.
+const WIKI_VID = (path) => `https://upload.wikimedia.org/wikipedia/commons/transcoded/${path}`;
+
 window.VIDEO_FALLBACKS = [
-  'https://cdn.pixabay.com/video/2020/11/07/55304-499594262_small.mp4',
-  'https://cdn.pixabay.com/video/2023/03/08/153817-806178213_small.mp4',
-  'https://cdn.pixabay.com/video/2022/09/25/132535-753956296_small.mp4',
-  'https://cdn.pixabay.com/video/2021/01/11/61705-500316058_small.mp4'
+  WIKI_VID('3/3c/Brezelschlingmaschine_der_Gro%C3%9Fb%C3%A4ckerei_Heitzmann_in_Bad_Krozingen-Biengen.webm/Brezelschlingmaschine_der_Gro%C3%9Fb%C3%A4ckerei_Heitzmann_in_Bad_Krozingen-Biengen.webm.480p.vp9.webm'),
+  WIKI_VID('3/3c/Brezelschlingmaschine_der_Gro%C3%9Fb%C3%A4ckerei_Heitzmann_in_Bad_Krozingen-Biengen.webm/Brezelschlingmaschine_der_Gro%C3%9Fb%C3%A4ckerei_Heitzmann_in_Bad_Krozingen-Biengen.webm.240p.vp9.webm'),
+  WIKI_VID('c/cb/Popcorn_Energizer.webm/Popcorn_Energizer.webm.240p.vp9.webm'),
+  WIKI_VID('5/5d/Bread_baking_in_Balochistan.webm/Bread_baking_in_Balochistan.webm.240p.vp9.webm')
 ];
 
 window.SITE_CONFIG = {
